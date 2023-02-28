@@ -9,7 +9,7 @@ class Controller
 {
 public:
     explicit Controller(Model* model);
-    QString GetPassword(int mode, int numbers);
+    QString GetPassword(int mode, int numbers, int seed);
 private:
     Model* model_;
 };

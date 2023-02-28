@@ -4,12 +4,13 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <cctype>
 
 class Model
 {
 public:
     Model();
-    std::string GetPwd(int mode, int number);
+    std::string GetPwd(int mode, int number, int seed);
 
 
 private:

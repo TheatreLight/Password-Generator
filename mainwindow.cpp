@@ -19,8 +19,9 @@ void MainWindow::on_pushButton_clicked()
     ui_->lineEdit->clear();
     int numbers = ui_->comboBox->currentText().toInt();
     int mode = GetMode();
-    QString s = controller_->GetPassword(mode, numbers);
+    QString s = controller_->GetPassword(mode, numbers, seed_);
     ui_->lineEdit->setText(s);
+    seed_ = 0;
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -43,3 +44,9 @@ int MainWindow::GetMode() {
     }
     return res;
 }
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    seed_+= 10;
+}
+

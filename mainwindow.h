@@ -21,8 +21,11 @@ private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
     int GetMode();
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui_;
     Controller* controller_;
+    int seed_ = 0;
 };
 #endif // MAINWINDOW_H

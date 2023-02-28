@@ -2,15 +2,16 @@
 
 Model::Model() {}
 
-std::string Model::GetPwd(int mode, int number) {
+std::string Model::GetPwd(int mode, int number, int seed) {
     std::string s;
     while (!CheckRules(s, mode)) {
         s.clear();
     for (int i = 0; i < number; ++i) {
+        int step = i + seed;
         if (mode == 1) {
-            char ch = OneLevelGen(i);
+            char ch = OneLevelGen(step);
             while (CheckRepeat(s, ch)) {
-                ch = OneLevelGen(i);
+                ch = OneLevelGen(step);
             }
             s.append(1, ch);
         }
@@ -104,7 +105,7 @@ bool Model::CheckRepeat(std::string &s, char ch)
     for (int i = s.length() - 1; i >= 0; --i) {
         if (s[i] == ch)
             repeat_count++;
-        if (repeat_count >= 2)
+        if (repeat_count > 1)
             return true;
     }
     return false;
@@ -118,11 +119,11 @@ bool Model::CheckRules(std::string &s, int mode)
     int upletters = 0;
     int symbols = 0;
     for (int i = 0; i < (int)s.length(); ++i) {
-        if (s[i] >= 97 && s[i] <= 122)
+        if (std::islower(s[i]))
             letters++;
-        if (s[i] >= 48 && s[i] <= 57)
+        if (std::isdigit(s[i]))
             numbers++;
-        if (s[i] >= 65 && s[i] <= 90)
+        if (std::isupper(s[i]))
             upletters++;
         if (SymbolCheck(s[i]))
             symbols++;
